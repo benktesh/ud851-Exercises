@@ -25,7 +25,10 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
+import android.util.Log;
 import android.widget.Toast;
+
+import static android.content.ContentValues.TAG;
 
 // DONE (1) Implement OnSharedPreferenceChangeListener
 public class SettingsFragment extends PreferenceFragmentCompat implements OnSharedPreferenceChangeListener {
@@ -50,10 +53,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
                 setPreferenceSummary(p, value);
             }
         }
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+        Log.d(TAG, "onCreatePreferences: ");
+        //sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
-
-
 
 
 
@@ -90,11 +92,21 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
     // onCreate and onDestroy respectively.
 
 
+
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    public void onDestroy() {
+        Log.d(TAG, "onDestroy: ");
+        super.onDestroy();
         getPreferenceScreen().getSharedPreferences()
                 .unregisterOnSharedPreferenceChangeListener(this);
 
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate:");
+        super.onCreate(savedInstanceState);
+        getPreferenceScreen().getSharedPreferences()
+                .registerOnSharedPreferenceChangeListener(this);
     }
 }
