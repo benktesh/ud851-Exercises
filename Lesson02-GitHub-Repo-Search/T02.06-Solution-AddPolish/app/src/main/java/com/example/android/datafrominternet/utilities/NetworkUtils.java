@@ -59,7 +59,8 @@ public class NetworkUtils {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
+http://image.tmdb.org/t/p/w185/%2FnBNZadXqJSdt05SHLqgT0HuC5Gm.jpg
+http://image.tmdb.org/t/p/w185//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg 
         return url;
     }
 
